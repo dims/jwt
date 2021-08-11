@@ -132,8 +132,8 @@ func (m *SigningMethodECDSA) Sign(signingString string, key interface{}) (string
 		// padded with zeros on the left to make sure the sizes work out.
 		// Output must be 2*keyBytes long.
 		out := make([]byte, 2*keyBytes)
-		r.FillBytes(out[0:keyBytes]) // r is assigned to the first half of output.
-		s.FillBytes(out[keyBytes:])  // s is assigned to the second half of output.
+		FillBytes(r, out[0:keyBytes]) // r is assigned to the first half of output.
+		FillBytes(s, out[keyBytes:])  // s is assigned to the second half of output.
 
 		return EncodeSegment(out), nil
 	} else {
